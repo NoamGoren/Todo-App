@@ -26,8 +26,10 @@ todo.save().then((doc)=>{
   res.status(400).send(e);
 });
 });
+
 //get all todos
 app.get('/todos',(req,res)=>{
+  console.log('test');
   Todo.find().then((todos)=>{
     res.send({todos})
   },(e)=>{
@@ -56,7 +58,22 @@ Todo.findById(id).then((todo)=>{
 });
 
 
-//route for delete
+//get /todos/ by name
+
+app.get('/name/:name', function (req,res) {
+var name = req.params.name;
+  Todo.find({text:name})
+  .then(function (todo) {
+    console.log(todo);
+     res.send(todo);
+  });
+});
+
+
+
+
+
+ //route for delete
 app.delete('/todos/:id', (req, res) => {
   var id = req.params.id;
 

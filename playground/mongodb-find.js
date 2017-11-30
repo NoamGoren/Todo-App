@@ -31,9 +31,16 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp',(err,db)=>{
 // });
 
 //chalenge
-db.collection('Users').find({name:'Noam'}).toArray().then((docs)=>{
+// db.collection('Users').find({name:'Noam'}).toArray().then((docs)=>{
+//   console.log('Users');
+//   console.log(JSON.stringify(docs,undefined,2));
+// },(err)=>{
+//   console.log('unable to fetch data');
+// });
+
+db.collection('todos').find({text:'test'}).toArray().then((docs)=>{
   console.log('Users');
-  console.log(JSON.stringify(docs,undefined,2));
+  console.log(JSON.stringify(docs[0],undefined,2));
 },(err)=>{
   console.log('unable to fetch data');
 });
