@@ -11,24 +11,25 @@ var{mongoose}=require('../db/mongoose');
 // });
 
 //GET all the todos
-todoRouter.get('/todos',(req,res,next)=>{
-  Todo.find().then((todos)=>{
-    res.send({todos});
-    next();
-  },(e)=>{
-    res.status(400).send(e);
-  });
-});
-
-todoRouter.post('/register',(req,res)=>{
-var todo= new Todo({
-  text: req.body.text
-});
-todo.save().then((doc)=>{
-  res.send(doc);
-},(e)=>{
-  res.status(400).send(e);
-});
-});
-
-module.exports = {todoRouter};
+// todoRouter.get('/todos',(req,res,next)=>{
+//   Todo.find().then((todos)=>{
+//     res.send({todos});
+//     next();
+//   },(e)=>{
+//     res.status(400).send(e);
+//   });
+// });
+//
+//
+// todoRouter.post('/register',(req,res)=>{
+// var todo= new Todo({
+//   text: req.body.text
+// });
+// todo.save().then((doc)=>{
+//   res.send(doc);
+// },(e)=>{
+//   res.status(400).send(e);
+// });
+// });
+//
+// module.exports = {todoRouter};
