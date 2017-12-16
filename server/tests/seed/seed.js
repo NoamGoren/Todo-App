@@ -3,19 +3,20 @@ const{Todo}=require('./../../models/todo');
 const{User}=require('./../../models/user');
 const jwt =require('jsonwebtoken');
 
-const user1Id=new ObjectID();
-const user2Id=new ObjectID();
+const userOneId=new ObjectID();
+const userTwoId=new ObjectID();
 
 const users=[{
-  _id: user1Id,
+  _id: userOneId,
   email:'noam.goren@gmail.com',
   password:'InigoPass',
-  tokens:[{
+  tokens: [{
     access:'auth',
-    token:jwt.sign({_id:user1Id,access:'auth'},'abc123').toString()
+    token:jwt.sign({_id:userOneId,access:'auth'},'abc123').toString()
 
   }]
-},{id:user2Id,
+},{
+  _id:userTwoId,
   email:'buzz15@gmail.com',
   password:'InigoPass'
 
@@ -47,3 +48,5 @@ const populateUsers = (done)=>{
 };
 
 module.exports={todos,populateTodos,users,populateUsers};
+
+
