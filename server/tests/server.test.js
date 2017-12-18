@@ -270,21 +270,15 @@ describe('POST /users/login', () => {
       })
       .expect(200)
       .expect((res) => {
-        expect(res.headers['x-auth']).toExist();
-      })
-      .end((err, res) => {
-        if (err) {
-          return done(err);
-        }
-
+        expect(res.header['x-auth']).toExist();
         User.findById(users[1]._id).then((user) => {
-          expect(user.tokens[0]).toInclude({
-            access: 'auth',
-            token: res.headers['x-auth']
-          });
-          done();
+            expect(user.tokens[0]).toInclude({
+                access: 'auth',
+                token: res.header['x-auth']
+            });
         }).catch((e) => done(e));
-      });
+    })
+    .end(done);
   });
 
   it('should reject invalid login',(done) => {
