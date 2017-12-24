@@ -39,16 +39,17 @@ app.get('/todos',authenticate, (req, res) => {
   });
 });
 
-app.get('/todos/:id', authenticate,(req, res) => {
+app.get('/todos/:id', authenticate, (req, res) => {
   var id = req.params.id;
 
   if (!ObjectID.isValid(id)) {
+    console.log("not valid");
     return res.status(404).send();
   }
 
   Todo.findOne({
-    _id:id,
-    _creator:req.user._id
+    _id: id,
+    _creator: req.user._id
   }).then((todo) => {
     if (!todo) {
       return res.status(404).send();
@@ -56,6 +57,7 @@ app.get('/todos/:id', authenticate,(req, res) => {
 
     res.send({todo});
   }).catch((e) => {
+    console.log(e);
     res.status(400).send();
   });
 });
